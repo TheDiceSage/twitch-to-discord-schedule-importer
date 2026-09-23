@@ -39,7 +39,7 @@ anything on their end.
 
 ## 3. Run the bot
 
-### Option A — Docker (recommended)
+### Option A: Docker (recommended)
 
 ```bash
 cp .env.example .env
@@ -47,7 +47,7 @@ cp .env.example .env
 docker compose up -d
 ```
 
-### Option B — Python directly
+### Option B: use Python in Venv
 
 ```bash
 python -m venv venv
@@ -78,7 +78,7 @@ to link your Twitch channel:
 /schedule link twitch_channel:yourchannelname
 ```
 
-That's it — the first sync runs immediately, and it keeps itself updated
+The first sync runs immediately, and it keeps itself updated
 from then on. Other commands:
 
 - `/schedule status` — shows the linked channel, settings, and last sync time
@@ -110,8 +110,8 @@ docker-compose.yml
 
 - Discord allows roughly 100 scheduled events per server.
 - Discord requires bot verification once the bot is in 100+ servers.
-- The bot's own Twitch app token is shared across all guilds — it's an app
-  token, not tied to any one streamer's account, since schedules are public.
+- The bot's own Twitch app token is shared across all guilds. Since it's an app
+  token, it's not tied to any streamer's account, since schedules are public.
 - Guard `DISCORD_BOT_TOKEN` and `TWITCH_CLIENT_SECRET` — anyone with the
   Discord token controls the bot in every server it's in.
 - `schedule_sync.db` (or `data/schedule_sync.db` under Docker) holds all
