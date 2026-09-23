@@ -1,8 +1,8 @@
-# Twitch Schedule → Discord Events Bot
+# Twitch Schedule To Discord Events Bot
 
 A Discord bot that mirrors any Twitch channel's schedule into a server's
-Scheduled Events, with an automatically generated cover image per event.
-One bot, run once by you, usable by any number of streamers — they never
+scheduled events, with an automatically generated cover image per event.
+The bot is run once by you and then usable by any number of streamers. They never
 touch a token or a terminal.
 
 ## How it works
@@ -21,7 +21,7 @@ touch a token or a terminal.
 
 ## 1. Create your Twitch app (you do this once)
 
-1. Go to [dev.twitch.tv/console](https://dev.twitch.tv/console) → **Register Your Application**.
+1. Go to [dev.twitch.tv/console](https://dev.twitch.tv/console) -> **Register Your Application**.
 2. OAuth Redirect URL can be `http://localhost` — it's unused for this flow.
 3. Copy the **Client ID**, then generate and copy a **Client Secret**.
 
@@ -30,7 +30,7 @@ anything on their end.
 
 ## 2. Create your Discord bot (you do this once)
 
-1. Go to the [Discord Developer Portal](https://discord.com/developers/applications) → **New Application**.
+1. Go to the [Discord Developer Portal](https://discord.com/developers/applications) -> **New Application**.
 2. Under **Bot**, click **Reset Token** and copy it. Keep it secret.
 3. Under **OAuth2 → URL Generator**, select scope `bot` and permissions
    `Manage Events` and `View Channels`. Use the generated URL as your
@@ -68,12 +68,14 @@ Slash commands sync globally by default, which can take up to an hour to
 appear in a new server the first time. Set `DEV_GUILD_ID` in `.env` to your
 own test server's ID while developing so commands there update instantly.
 
-## 4. What streamers do
+## 4. How to use the bot
 
-In their server (with **Manage Events** permission):
+Use the invitation link in the "Bot Invitation Link" file.
+When the bot appears in the list of server members, use this command in any text chat
+to link your Twitch channel:
 
 ```
-/schedule link twitch_channel:theirchannelname
+/schedule link twitch_channel:yourchannelname
 ```
 
 That's it — the first sync runs immediately, and it keeps itself updated
