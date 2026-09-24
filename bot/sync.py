@@ -1,11 +1,3 @@
-"""
-Core sync logic: given one guild's config, fetch its Twitch schedule and
-reconcile it against that guild's Discord scheduled events.
-
-Kept separate from the Discord command/event handlers so both the
-background loop and the manual /schedule sync command call one code path.
-"""
-
 import re
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
@@ -63,8 +55,6 @@ async def sync_guild(
         if m:
             existing_by_segment[m.group(1)] = ev
 
-    # Cache one generated cover per Twitch category so a week of the same
-    # game only triggers one image download+composite.
     cover_cache: dict[str, bytes | None] = {}
 
     for seg in segments:

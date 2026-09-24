@@ -1,10 +1,3 @@
-"""
-Twitch schedule -> Discord events bot.
-
-Any server that runs /schedule link gets its Twitch schedule mirrored into
-Discord scheduled events, refreshed on a timer in the background.
-"""
-
 import asyncio
 import logging
 
@@ -20,7 +13,7 @@ from twitch_api import TwitchClient
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
 log = logging.getLogger("bot")
 
-INTENTS = discord.Intents.default()  # no message content needed; slash commands only
+INTENTS = discord.Intents.default()
 
 
 class ScheduleSyncBot(commands.Bot):
@@ -66,7 +59,7 @@ async def background_sync():
     for cfg in bot.db.all_guilds():
         guild = bot.get_guild(cfg.guild_id)
         if guild is None:
-            continue  # bot was removed from that server
+            continue 
         try:
             result = await sync_guild(guild, cfg, bot.twitch, bot.http_session)
             if result.channel_not_found:
@@ -82,7 +75,7 @@ async def background_sync():
         except discord.Forbidden:
             bot.db.mark_synced(cfg.guild_id, error="Missing 'Manage Events' permission")
             log.warning("Guild %s: missing Manage Events permission", cfg.guild_id)
-        except Exception as exc:  # one guild's failure shouldn't stop the rest
+        except Exception as exc: 
             bot.db.mark_synced(cfg.guild_id, error=str(exc)[:200])
             log.exception("Guild %s: sync failed", cfg.guild_id)
 

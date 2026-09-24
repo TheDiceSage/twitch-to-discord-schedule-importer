@@ -1,12 +1,10 @@
-"""Builds Discord event cover images from Twitch art."""
-
 import io
 from typing import Optional
 
 import aiohttp
 from PIL import Image, ImageEnhance, ImageFilter
 
-BANNER_SIZE = (1600, 640)  # Discord's recommended 16:5 ratio for event covers
+BANNER_SIZE = (1600, 640) 
 
 
 async def _download(session: aiohttp.ClientSession, url: str) -> Optional[Image.Image]:

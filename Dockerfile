@@ -8,7 +8,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY bot/ ./bot/
 WORKDIR /app/bot
 
-# Persist the SQLite database outside the container image.
 VOLUME ["/app/bot/data"]
 ENV DB_PATH=/app/bot/data/schedule_sync.db
 

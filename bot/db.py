@@ -1,11 +1,3 @@
-"""
-Per-guild configuration storage.
-
-One row per Discord server that has linked a Twitch channel. SQLite is
-plenty for this; writes are rare (only on /schedule commands) and reads
-happen once per sync cycle.
-"""
-
 import sqlite3
 import threading
 from contextlib import contextmanager

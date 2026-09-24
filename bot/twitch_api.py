@@ -1,12 +1,3 @@
-"""
-Thin wrapper around the Twitch Helix API.
-
-Uses a single app-access token (client-credentials grant) shared across all
-guilds, since reading a public channel's schedule doesn't require the
-streamer to authorize anything. The token is cached in memory and refreshed
-shortly before it expires.
-"""
-
 import time
 from datetime import datetime, timezone
 from typing import Optional
@@ -65,7 +56,7 @@ class TwitchClient:
             async with session.get(
                 f"{API_BASE}/schedule", headers=headers, params=params
             ) as resp:
-                if resp.status == 404:  # channel has no schedule set up
+                if resp.status == 404: 
                     return []
                 resp.raise_for_status()
                 body = await resp.json()
